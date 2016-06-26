@@ -1,0 +1,19 @@
+{
+  "name": "httpproxyserver",
+  "version": "1.0.0",
+  "description": "a simple http proxy server to log somebody's ajax info",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Os-carsun/httpProxyServer.git"
+  },
+  "author": "Oscar sun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Os-carsun/httpProxyServer/issues"
+  },
+  "homepage": "https://github.com/Os-carsun/httpProxyServer#readme"
+}
