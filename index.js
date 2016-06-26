@@ -1,20 +1,28 @@
 'use strict';
 
 const http = require('http');
-const DEFAULT_SETTING = {
-  port: 8080,
-  responseHeader: {
-    'Content-Type': 'text/plain',
-    'Access-Control-Allow-Origin' : '*',
-    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
+const fs = require('fs');
+const DEFAULT_SETTING = require('./defaultConfig');
+
+const logFile = (data) => {
+  let fileName = "";
+  try {
+    DEFAULT_SETTING.LogFileFormate.forEach((props)=> fileName += (`${data[`${props}`]} `) );
+    fileName += new Date().getTime();
+  } catch (e) {
+    console.error(e, "LogFileFormate Wrong");
+    return;
   }
+  fs.writeFile(fileName, data.content, 'utf8', ()=> console.log(`log ${fileName} success`));
 }
 
 const serverConfig = (request, response)=> {
+
   const chunkData = [];
   let result = {
     header: request.headers,
     method: request.method,
+    host: request.headers.host,
     url: request.url,
     content: [],
   }
@@ -25,6 +33,7 @@ const serverConfig = (request, response)=> {
 
   response.writeHead(200, DEFAULT_SETTING.responseHeader);
   response.write(JSON.stringify(result));
+  logFile(result);
   response.end();
 }
 
