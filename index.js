@@ -11,7 +11,6 @@ const DEFAULT_SETTING = {
 }
 
 const serverConfig = (request, response)=> {
-
   const chunkData = [];
   let result = {
     header: request.headers,
