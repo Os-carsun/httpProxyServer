@@ -29,7 +29,7 @@ const serverConfig = (request, response)=> {
   request
   .on('error', (err)=> console.log(err))
   .on('data', (chunk)=> chunkData.push(chunk))
-  .on('end', ()=> (result.content = Buffer.concat(chunkData).toString()));
+  .on('end', ()=> (result.content = Buffer.concat(chunkData).toString('utf-8')));
 
   response.writeHead(200, DEFAULT_SETTING.responseHeader);
   response.write(JSON.stringify(result));
